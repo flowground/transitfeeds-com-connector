@@ -1,0 +1,41 @@
+{
+    "type": "object",
+    "properties": {
+        "key": {
+            "required": true,
+            "type": "string",
+            "default": "YOUR_API_KEY"
+        },
+        "location": {
+            "required": false,
+            "type": "integer"
+        },
+        "descendants": {
+            "required": false,
+            "type": "integer",
+            "enum": [
+                0,
+                1
+            ],
+            "default": 1
+        },
+        "page": {
+            "required": false,
+            "type": "integer",
+            "default": 1
+        },
+        "limit": {
+            "required": false,
+            "type": "integer",
+            "default": 10
+        },
+        "type": {
+            "required": false,
+            "type": "string",
+            "enum": [
+                "gtfs",
+                "gtfsrealtime"
+            ]
+        }
+    }
+}

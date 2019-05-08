@@ -1,0 +1,10 @@
+{
+    "type": "object",
+    "properties": {
+        "key": {
+            "required": true,
+            "type": "string",
+            "default": "YOUR_API_KEY"
+        }
+    }
+}

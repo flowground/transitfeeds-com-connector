@@ -1,0 +1,42 @@
+{
+    "type": "object",
+    "properties": {
+        "key": {
+            "required": true,
+            "type": "string",
+            "default": "YOUR_API_KEY"
+        },
+        "feed": {
+            "required": false,
+            "type": "string"
+        },
+        "page": {
+            "required": false,
+            "type": "integer",
+            "default": 1
+        },
+        "limit": {
+            "required": false,
+            "type": "integer",
+            "default": 10
+        },
+        "err": {
+            "required": false,
+            "type": "integer",
+            "enum": [
+                0,
+                1
+            ],
+            "default": 1
+        },
+        "warn": {
+            "required": false,
+            "type": "integer",
+            "enum": [
+                0,
+                1
+            ],
+            "default": 1
+        }
+    }
+}

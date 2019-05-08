@@ -1,0 +1,102 @@
+{
+    "title": "TransitFeeds",
+    "description": "API to view feed information and download feeds from TransitFeeds.com\n",
+    "docsUrl": "",
+    "url": "https://api.apis.guru/v2/specs/transitfeeds.com/1.0.0/swagger.json",
+    "envVars": {},
+    "credentials": {
+        "fields": {
+            "server": {
+                "label": "Server",
+                "viewClass": "SelectView",
+                "model": [
+                    "https://api.transitfeeds.com/v1",
+                    "--- Custom URL"
+                ],
+                "required": true
+            },
+            "otherServer": {
+                "label": "Custom Server URL",
+                "viewClass": "TextFieldView"
+            }
+        }
+    },
+    "triggers": {
+        "startFlow": {
+            "main": "./lib/triggers/startFlow.js",
+            "type": "polling",
+            "title": "Start Flow",
+            "fields": {}
+        }
+    },
+    "actions": {
+        "getFeedVersions": {
+            "main": "./lib/actions/getFeedVersions.js",
+            "title": "Retrieve a list of versions of specified (or all) feeds.",
+            "description": "This API call allows you to easily see every single feed update in the TranstiFeeds.com system. Since this can be quite\nlong, it's also possible to filter this list by a single feed ID.\n",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/getFeedVersions.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "getFeeds": {
+            "main": "./lib/actions/getFeeds.js",
+            "title": "Retrieve a list of feeds.",
+            "description": "Used this API to retrieve a list of feeds in the system. Doing so can be usedful to discover feed IDs that\ncan be used in other API calls.\n",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/getFeeds.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "getLatestFeedVersion": {
+            "main": "./lib/actions/getLatestFeedVersion.js",
+            "title": "Retrieve the download URL for the latest version of a feed.",
+            "description": "Once you have used `/getFeeds` to discover a feed's URL, you can use this endpoint to download its latest version from TranstiFeeds.\nIt will be unmodified in the original format from the provider.\n",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/getLatestFeedVersion.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "getLocations": {
+            "main": "./lib/actions/getLocations.js",
+            "title": "Retrieve a list of locations.",
+            "description": "Retrieve a list of locations. Each location (except for the root) has a parent location, and each\nlocation has zero or more child locations. This hierarchy is generally structured so countries contain\nstates, states contain cities (although this typically depends on the country).\n",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/getLocations.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        }
+    }
+}
